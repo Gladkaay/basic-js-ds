@@ -16,9 +16,9 @@ class BinarySearchTree {
   }
 
   add(data) {
-    this.root = addWithin (this.root, data);
+    this.root = addNode (this.root, data);
 
-    function addWithin(node, data) {
+    function addNode(node, data) {
       if(!node) {
         return new Node(data);
       }
@@ -26,32 +26,32 @@ class BinarySearchTree {
         return node;
       }
       if (data < node.data) {
-        node.left = addWithin(node.left, data);
+        node.left = addNode(node.left, data);
       } else {
-        node.right = addWithin(node.right, data);
+        node.right = addNode(node.right, data);
       }
       return node;
     }
   }
 
   has(data) {
-    return searchWithin(this.root, data);
+    return searchNode(this.root, data);
 
-    function searchWithin(node, data) {
+    function searchNode(node, data) {
       if (!node) {
         return false;
       }
       if (node.data === data) {
         return true;
       }
-      return data < node.data ? searchWithin(node.left, data) : searchWithin(node.right, data);
+      return data < node.data ? searchNode(node.left, data) : searchNode(node.right, data);
     }
   }
 
   find(data) {
-    return findWithin(this.root, data);
+    return findNode(this.root, data);
 
-    function findWithin(node, data) {
+    function findNode(node, data) {
       if (!node) {
         return null;
       }
@@ -59,10 +59,10 @@ class BinarySearchTree {
         return node;
       }
       if (data < node.data) {
-        node.left = findWithin(node.left, data);
+        node.left = findNode(node.left, data);
         return node.left;
       } else {
-        node.right = findWithin(node.right, data);
+        node.right = findNode(node.right, data);
         return node.right;
       }
       // return node;
