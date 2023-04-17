@@ -25,10 +25,10 @@ class BinarySearchTree {
       if (node.data === data) {
         return node;
       }
-      if (data < node.data) {
-        node.left = addNode(node.left, data);
-      } else {
+      if (data > node.data) {
         node.right = addNode(node.right, data);
+      } else {
+        node.left = addNode(node.left, data);
       }
       return node;
     }
@@ -44,7 +44,11 @@ class BinarySearchTree {
       if (node.data === data) {
         return true;
       }
-      return data < node.data ? searchNode(node.left, data) : searchNode(node.right, data);
+      if (data < node.data) {
+        return searchNode(node.left, data);
+      } else {
+        return searchNode(node.right, data);
+      }
     }
   }
 
@@ -87,12 +91,12 @@ class BinarySearchTree {
         if (!node.left && !node.right) {
           return null;
         }
-        if (!node.left) {
-          node = node.right;
-          return node;
-        }
         if (!node.right) {
           node = node.left;
+          return node;
+        }        
+        if (!node.left) {
+          node = node.right;
           return node;
         }
         let minRight = node.right;
